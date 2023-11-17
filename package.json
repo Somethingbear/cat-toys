@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
+    "@vercel/analytics": "^1.1.1",
     "antd": "^5.11.1",
     "copy-to-clipboard": "^3.3.3",
     "next": "14.0.3",
