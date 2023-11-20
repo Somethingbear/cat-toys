@@ -3,7 +3,11 @@
 import { Button, Input, QRCode, Tooltip, message, Image } from "antd";
 import React, { useMemo, useState } from "react";
 import copy from "copy-to-clipboard";
-import { CopyOutlined, InfoCircleOutlined } from "@ant-design/icons";
+import {
+  CopyOutlined,
+  InfoCircleOutlined,
+  QuestionCircleOutlined,
+} from "@ant-design/icons";
 import Link from "next/link";
 // import Image from "next/image";
 
@@ -46,13 +50,19 @@ const NNRTransfer = () => {
   }, [hostPortNNR, originalVmessJson]);
 
   const newVmessStr = useMemo(() => {
-    return newVmessJson ? `vmess://${base64Encode(JSON.stringify(newVmessJson))}` : "";
+    return newVmessJson
+      ? `vmess://${base64Encode(JSON.stringify(newVmessJson))}`
+      : "";
   }, [newVmessJson]);
 
   return (
-    <main className="p-6 flex flex-col gap-4">
+    <main className="flex flex-col gap-4 p-6">
       <h2>
-        <Link href={"https://nnr.moe"} target="_blank" className=" underline text-blue-500">
+        <Link
+          href={"https://nnr.moe"}
+          target="_blank"
+          className=" text-blue-500 underline"
+        >
           NNR
         </Link>{" "}
         Transfer
@@ -60,12 +70,16 @@ const NNRTransfer = () => {
 
       <section>
         <span className="flex items-center gap-4">
-          Paste Original vmess Here
-          <InfoCircleOutlined
+          <span>Copy&Paste Original Vmess Here</span>
+          <span
+            className="flex cursor-pointer items-center gap-[8px] text-gray-400"
             onClick={() => {
               setShowImage(1);
             }}
-          />
+          >
+            How
+            <QuestionCircleOutlined />
+          </span>
         </span>
         <Input
           value={originalVmessStr}
@@ -76,12 +90,16 @@ const NNRTransfer = () => {
       </section>
       <section>
         <span className="flex items-center gap-4">
-          Copy to NNR Host:
-          <InfoCircleOutlined
+          <span>Copy to NNR Host:</span>
+          <span
+            className="flex cursor-pointer items-center gap-[8px] text-gray-400"
             onClick={() => {
               setShowImage(2);
             }}
-          />
+          >
+            How
+            <QuestionCircleOutlined />
+          </span>
         </span>
         <Input
           readOnly
@@ -100,12 +118,16 @@ const NNRTransfer = () => {
       </section>
       <section>
         <span className="flex items-center gap-4">
-          Copy to NNR Port:
-          <InfoCircleOutlined
+          <span>Copy to NNR Port:</span>
+          <span
+            className="flex cursor-pointer items-center gap-[8px] text-gray-400"
             onClick={() => {
               setShowImage(2);
             }}
-          />
+          >
+            How
+            <QuestionCircleOutlined />
+          </span>
         </span>
         <Input
           readOnly
@@ -125,12 +147,16 @@ const NNRTransfer = () => {
 
       <section>
         <span className="flex items-center gap-4">
-          {`Paste "HOST:PORT" from NNR`}
-          <InfoCircleOutlined
+          <span>{`Paste "HOST:PORT" from NNR`}</span>
+          <span
+            className="flex cursor-pointer items-center gap-[8px] text-gray-400"
             onClick={() => {
               setShowImage(3);
             }}
-          />
+          >
+            How
+            <QuestionCircleOutlined />
+          </span>
         </span>
         <Input
           value={hostPortNNR}
