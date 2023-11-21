@@ -59,7 +59,7 @@ const NNRTransfer = () => {
     <main className="flex flex-col gap-4 p-6">
       <h2>
         <Link
-          href={"https://nnr.moe"}
+          href={"https://nnr.moe?aff=8613"}
           target="_blank"
           className=" text-blue-500 underline"
         >
