@@ -68,6 +68,27 @@ const NNRTransfer = () => {
         Transfer
       </h2>
 
+      <div className="flex flex-col gap-2">
+        <span
+          className="underline"
+          onClick={() => {
+            copy("starfly.online:");
+            message.success("Copied");
+          }}
+        >
+          starfly.online
+        </span>
+        <span
+          className="underline"
+          onClick={() => {
+            copy("ninestar.online:");
+            message.success("Copied");
+          }}
+        >
+          ninestar.online
+        </span>
+      </div>
+
       <section>
         <span className="flex items-center gap-4">
           <span>Copy&Paste Original Vmess Here</span>
