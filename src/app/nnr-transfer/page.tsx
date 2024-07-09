@@ -278,7 +278,7 @@ const NNRTransfer = () => {
           suffix={
             <CopyOutlined
               onClick={() => {
-                if (!newVmessStr || !newSSStr) return;
+                if (!newVmessStr && !newSSStr) return;
                 copy(newVmessStr || newSSStr);
                 message.success("Copied");
               }}
