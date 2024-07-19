@@ -96,7 +96,7 @@ const NNRTransfer = () => {
   }, [originalStr, originalSSJson, hostPortNNR, country])
 
   return (
-    <main className="flex flex-col gap-4 p-6">
+    <main className="flex flex-col gap-4 p-6 max-w-[700px]">
       <h2>
         <Link
           href={"https://nnr.moe?aff=8613"}
