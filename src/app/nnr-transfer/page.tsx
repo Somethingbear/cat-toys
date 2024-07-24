@@ -171,8 +171,8 @@ const NNRTransfer = () => {
           suffix={
             <CopyOutlined
               onClick={() => {
-                if (!originalVmessJson.add && !originalSSJson?.host) return;
-                copy(originalVmessJson.add || originalSSJson?.host);
+                if (!originalVmessJson?.add && !originalSSJson?.host) return;
+                copy(originalVmessJson?.add || originalSSJson?.host);
                 message.success("Copied");
               }}
             />
@@ -199,8 +199,8 @@ const NNRTransfer = () => {
           suffix={
             <CopyOutlined
               onClick={() => {
-                if (!originalVmessJson.port && !originalSSJson?.port) return;
-                copy(originalVmessJson.port || originalSSJson?.port);
+                if (!originalVmessJson?.port && !originalSSJson?.port) return;
+                copy(originalVmessJson?.port || originalSSJson?.port);
                 message.success("Copied");
               }}
             />
