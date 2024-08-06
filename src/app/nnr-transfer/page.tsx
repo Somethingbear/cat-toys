@@ -225,6 +225,7 @@ const NNRTransfer = () => {
             onClick={() => {
               setHostPortNNR("starfly.online:");
             }}
+            title="安港"
           >
             starfly.online
             <EnterOutlined />
@@ -234,6 +235,7 @@ const NNRTransfer = () => {
             onClick={() => {
               setHostPortNNR("ninestar.online:");
             }}
+            title="深港"
           >
             ninestar.online
             <EnterOutlined />
