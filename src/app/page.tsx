@@ -6,12 +6,18 @@ export default function Home() {
     <main className="flex flex-col gap-2 p-6">
       <Link
         href="/nnr-transfer"
-        className=" cursor-pointer text-blue-500 underline"
+        className="cursor-pointer text-blue-500 underline"
       >
         NNR Transfer
       </Link>
-      <Link href="/nnr-api" className=" cursor-pointer text-blue-500 underline">
+      <Link href="/nnr-api" className="cursor-pointer text-blue-500 underline">
         NNR API
+      </Link>
+      <Link
+        href="/nnr-api-batch"
+        className="cursor-pointer text-blue-500 underline"
+      >
+        NNR API Batch
       </Link>
     </main>
   );
