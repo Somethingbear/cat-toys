@@ -11,14 +11,7 @@ import {
 } from "@ant-design/icons";
 import Link from "next/link";
 // import Image from "next/image";
-
-const base64Encode = (str: string) => {
-  return Buffer.from(str, "utf8").toString("base64");
-};
-
-const base64Decode = (str: string) => {
-  return Buffer.from(str, "base64").toString("utf8");
-};
+import { base64Decode, base64Encode } from "@/utils/base64";
 
 const NNRTransfer = () => {
   // vmess://eyJ2IjogIjIiLCAicHMiOiAiOWNsb3VkLnZpcC0zOC4xNDMuMTguMTYyIiwgImFkZCI6ICJ1cy1zZC1oeS5oYXBweWNhdDEyLmNvbSIsICJwb3J0IjogMjU5OTcsICJpZCI6ICIzNTM2ZDlmNy1jOGJhLTQ4YTItODllMi05OTBlMmEyOGNmNDgiLCAiYWlkIjogIjAiLCAic2N5IjogImF1dG8iLCAibmV0IjogInRjcCIsICJ0eXBlIjogIm5vbmUiLCAiaG9zdCI6ICIiLCAicGF0aCI6ICIiLCAidGxzIjogIm5vbmUiLCAic25pIjogIiIsICJhbHBuIjogIiJ9
@@ -77,11 +70,11 @@ const NNRTransfer = () => {
       : "";
   }, [newVmessJson]);
 
-  const extractPreHostPort =(ssString: string): string | null => {
+  const extractPreHostPort = (ssString: string): string | null => {
     const regex = /^ss:\/\/([^@]+)/;
     const matches = ssString.match(regex);
     return matches ? matches[1] : null;
-  }
+  };
 
   const newSSStr = useMemo(() => {
     const cipherPassword = extractPreHostPort(originalStr);
@@ -92,11 +85,13 @@ const NNRTransfer = () => {
     if (!host || !port) {
       return "";
     }
-    return `ss://${cipherPassword}@${host}:${port}#${country ? `${country}-` : ""}${originalSSJson?.host}`;
-  }, [originalStr, originalSSJson, hostPortNNR, country])
+    return `ss://${cipherPassword}@${host}:${port}#${
+      country ? `${country}-` : ""
+    }${originalSSJson?.host}`;
+  }, [originalStr, originalSSJson, hostPortNNR, country]);
 
   return (
-    <main className="flex flex-col gap-4 p-6 max-w-[700px]">
+    <main className="flex max-w-[700px] flex-col gap-4 p-6">
       <h2>
         <Link
           href={"https://nnr.moe?aff=8613"}
@@ -288,7 +283,11 @@ const NNRTransfer = () => {
           }
         />
       </section>
-      <section>{(newVmessStr || newSSStr) && <QRCode value={newVmessStr || newSSStr} />}</section>
+      <section>
+        {(newVmessStr || newSSStr) && (
+          <QRCode value={newVmessStr || newSSStr} />
+        )}
+      </section>
       <section>
         <Image
           src={`/images/nnr-transfer/${showImage}.png`}
