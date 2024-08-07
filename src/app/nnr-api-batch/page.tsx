@@ -30,11 +30,11 @@ const NNRTransfer = () => {
   // vmess://eyJ2IjogIjIiLCAicHMiOiAiOWNsb3VkLnZpcC0zOC4xNDMuMTguMTYyIiwgImFkZCI6ICJ1cy1zZC1oeS5oYXBweWNhdDEyLmNvbSIsICJwb3J0IjogMjU5OTcsICJpZCI6ICIzNTM2ZDlmNy1jOGJhLTQ4YTItODllMi05OTBlMmEyOGNmNDgiLCAiYWlkIjogIjAiLCAic2N5IjogImF1dG8iLCAibmV0IjogInRjcCIsICJ0eXBlIjogIm5vbmUiLCAiaG9zdCI6ICIiLCAicGF0aCI6ICIiLCAidGxzIjogIm5vbmUiLCAic25pIjogIiIsICJhbHBuIjogIiJ9
   const [originalStr, setOriginalStr] = useState<string>("");
   const [country, setCountry] = useState("美国");
-  const [token, setToken] = useState("ebfee4d8-dd4a-4739-8459-f888f8fdbed1");
+  const [token, setToken] = useState("");
   // ebfee4d8-dd4a-4739-8459-f888f8fdbed1
 
   const [sid, setSid] = useState<string>("");
-  const [name, setName] = useState<string>("测试123");
+  const [name, setName] = useState<string>("");
 
   const [newVmessArr, setNewVmessArr] = useState<string[]>([]);
 
