@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Input, QRCode, Tooltip, message, Image, Select } from "antd";
+import { Button, Input, QRCode, Tooltip, message, Image, Select, Divider } from "antd";
 import React, { useEffect, useMemo, useState } from "react";
 import copy from "copy-to-clipboard";
 import {
@@ -25,7 +25,7 @@ const NNRTransfer = () => {
   // ebfee4d8-dd4a-4739-8459-f888f8fdbed1
 
   const [sid, setSid] = useState<string>("");
-  const [name, setName] = useState<string>("测试123");
+  const [name, setName] = useState<string>("");
 
   const [newVmessStr, setNewVmessStr] = useState("");
 
@@ -221,6 +221,8 @@ const NNRTransfer = () => {
       >
         Generate
       </Button>
+
+      <Divider />
 
       <section>
         New:
