@@ -217,6 +217,7 @@ const NNRTransfer = () => {
 
       <Button
         disabled={!token || !originalStr || !sid}
+        loading={addRuleMutation.isPending}
         onClick={handleGenerate}
       >
         Generate

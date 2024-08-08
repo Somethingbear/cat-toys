@@ -27,6 +27,7 @@ import axios from "axios";
 const baseUrl = "https://proxy.yxcharles.workers.dev/https://byte-transit.com";
 
 const NNRTransfer = () => {
+  const [isRunning, setIsRunning] = useState(false);
   // vmess://eyJ2IjogIjIiLCAicHMiOiAiOWNsb3VkLnZpcC0zOC4xNDMuMTguMTYyIiwgImFkZCI6ICJ1cy1zZC1oeS5oYXBweWNhdDEyLmNvbSIsICJwb3J0IjogMjU5OTcsICJpZCI6ICIzNTM2ZDlmNy1jOGJhLTQ4YTItODllMi05OTBlMmEyOGNmNDgiLCAiYWlkIjogIjAiLCAic2N5IjogImF1dG8iLCAibmV0IjogInRjcCIsICJ0eXBlIjogIm5vbmUiLCAiaG9zdCI6ICIiLCAicGF0aCI6ICIiLCAidGxzIjogIm5vbmUiLCAic25pIjogIiIsICJhbHBuIjogIiJ9
   const [originalStr, setOriginalStr] = useState<string>("");
   const [country, setCountry] = useState("美国");
@@ -121,7 +122,7 @@ const NNRTransfer = () => {
     new Promise((resolve) => setTimeout(resolve, ms));
 
   const handleStart = async () => {
-
+    setIsRunning(true);
     for (let index = 0; index < vmessStrArr.length; index++) {
       const item = vmessStrArr[index];
 
@@ -160,6 +161,7 @@ const NNRTransfer = () => {
       );
       await sleep(10000);
     }
+    setIsRunning(false);
   };
 
   return (
@@ -251,6 +253,7 @@ const NNRTransfer = () => {
 
       <Button
         disabled={!token || !originalStr || !sid || vmessStrArr.length === 0}
+        loading={isRunning}
         onClick={handleStart}
       >
         Start
