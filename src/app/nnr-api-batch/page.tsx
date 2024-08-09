@@ -118,6 +118,15 @@ const NNRTransfer = () => {
     return newVmessArr.join("\n");
   }, [newVmessArr]);
 
+  const newVmessIpStr = useMemo(() => {
+    const arr = newVmessArr.map((item) => {
+      const originalVmessJson = JSON.parse(base64Decode(item.split("://")[1]));
+      return originalVmessJson.ps;
+    })
+
+    return arr.join("\n");
+  }, [vmessStrArr]);
+
   const sleep = (ms: number) =>
     new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -267,15 +276,15 @@ const NNRTransfer = () => {
           value={newVmessStr}
           readOnly
           disabled
-          // suffix={
-          //   <CopyOutlined
-          //     onClick={() => {
-          //       if (!newVmessStr) return;
-          //       copy(newVmessStr);
-          //       message.success("Copied");
-          //     }}
-          //   />
-          // }
+        />
+      </section>
+
+      <section>
+        {`New IP: (${newVmessArr.length})`}
+        <Input.TextArea
+          value={newVmessIpStr}
+          readOnly
+          disabled
         />
       </section>
       {/* <section>{newVmessStr && <QRCode value={newVmessStr} />}</section> */}
