@@ -122,10 +122,9 @@ const NNRTransfer = () => {
     const arr = newVmessArr.map((item) => {
       const originalVmessJson = JSON.parse(base64Decode(item.split("://")[1]));
       return originalVmessJson.ps;
-    })
-
+    });
     return arr.join("\n");
-  }, [vmessStrArr]);
+  }, [newVmessArr]);
 
   const sleep = (ms: number) =>
     new Promise((resolve) => setTimeout(resolve, ms));
@@ -272,20 +271,12 @@ const NNRTransfer = () => {
 
       <section>
         {`New: (${newVmessArr.length})`}
-        <Input.TextArea
-          value={newVmessStr}
-          readOnly
-          disabled
-        />
+        <Input.TextArea value={newVmessStr} readOnly disabled rows={5} />
       </section>
 
       <section>
         {`New IP: (${newVmessArr.length})`}
-        <Input.TextArea
-          value={newVmessIpStr}
-          readOnly
-          disabled
-        />
+        <Input.TextArea value={newVmessIpStr} readOnly disabled rows={5} />
       </section>
       {/* <section>{newVmessStr && <QRCode value={newVmessStr} />}</section> */}
     </main>
