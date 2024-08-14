@@ -20,6 +20,7 @@ const NNRTransfer = () => {
   const [showImage, setShowImage] = useState(0);
 
   const [country, setCountry] = useState("美国");
+  const [customCountry, setCustomCountry] = useState("");
 
   const originalVmessJson = useMemo(() => {
     if (!originalStr) return null;
@@ -60,9 +61,9 @@ const NNRTransfer = () => {
       ...originalVmessJson,
       add: host,
       port: port,
-      ps: `${country ? `${country}-` : ""}${originalVmessJson.ps}`,
+      ps: `${country ? `${country === "自定义" ? customCountry : country}-` : ""}${originalVmessJson.ps}`,
     };
-  }, [hostPortNNR, originalVmessJson, country]);
+  }, [hostPortNNR, originalVmessJson, country, customCountry]);
 
   const newVmessStr = useMemo(() => {
     return newVmessJson
@@ -86,9 +87,9 @@ const NNRTransfer = () => {
       return "";
     }
     return `ss://${cipherPassword}@${host}:${port}#${
-      country ? `${country}-` : ""
+      country ? `${country === "自定义" ? customCountry : country}-` : ""
     }${originalSSJson?.host}`;
-  }, [originalStr, originalSSJson, hostPortNNR, country]);
+  }, [originalStr, originalSSJson, hostPortNNR, country, customCountry]);
 
   return (
     <main className="flex max-w-[700px] flex-col gap-4 p-6">
@@ -249,21 +250,31 @@ const NNRTransfer = () => {
       <section>
         <span className="flex">Country:</span>
         <Select
-          className="w-[250px]"
+          className="w-full"
           value={country}
           onChange={(value) => {
             setCountry(value);
           }}
           allowClear
-        >
-          <Select.Option value="美国">美国</Select.Option>
-          <Select.Option value="英国">英国</Select.Option>
-          <Select.Option value="泰国">泰国</Select.Option>
-          <Select.Option value="越南">越南</Select.Option>
-          <Select.Option value="新加坡">新加坡</Select.Option>
-          <Select.Option value="马来西亚">马来西亚</Select.Option>
-          <Select.Option value="菲律宾">菲律宾</Select.Option>
-        </Select>
+          options={[
+            { value: "美国", label: "美国" },
+            { value: "英国", label: "英国" },
+            { value: "泰国", label: "泰国" },
+            { value: "越南", label: "越南" },
+            { value: "新加坡", label: "新加坡" },
+            { value: "马来西亚", label: "马来西亚" },
+            { value: "菲律宾", label: "菲律宾" },
+            { value: "自定义", label: "自定义" },
+          ]}
+        />
+        {country === "自定义" && (
+          <Input 
+            value={customCountry}
+            onChange={(e) => {
+              setCustomCountry(e.target.value);
+            }}
+          />
+        )}
       </section>
 
       <section>

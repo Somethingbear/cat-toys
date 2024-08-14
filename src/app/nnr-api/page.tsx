@@ -1,6 +1,15 @@
 "use client";
 
-import { Button, Input, QRCode, Tooltip, message, Image, Select, Divider } from "antd";
+import {
+  Button,
+  Input,
+  QRCode,
+  Tooltip,
+  message,
+  Image,
+  Select,
+  Divider,
+} from "antd";
 import React, { useEffect, useMemo, useState } from "react";
 import copy from "copy-to-clipboard";
 import {
@@ -21,6 +30,7 @@ const NNRTransfer = () => {
   // vmess://eyJ2IjogIjIiLCAicHMiOiAiOWNsb3VkLnZpcC0zOC4xNDMuMTguMTYyIiwgImFkZCI6ICJ1cy1zZC1oeS5oYXBweWNhdDEyLmNvbSIsICJwb3J0IjogMjU5OTcsICJpZCI6ICIzNTM2ZDlmNy1jOGJhLTQ4YTItODllMi05OTBlMmEyOGNmNDgiLCAiYWlkIjogIjAiLCAic2N5IjogImF1dG8iLCAibmV0IjogInRjcCIsICJ0eXBlIjogIm5vbmUiLCAiaG9zdCI6ICIiLCAicGF0aCI6ICIiLCAidGxzIjogIm5vbmUiLCAic25pIjogIiIsICJhbHBuIjogIiJ9
   const [originalStr, setOriginalStr] = useState<string>("");
   const [country, setCountry] = useState("美国");
+  const [customCountry, setCustomCountry] = useState("");
   const [token, setToken] = useState("");
   // ebfee4d8-dd4a-4739-8459-f888f8fdbed1
 
@@ -116,7 +126,7 @@ const NNRTransfer = () => {
               ...originalVmessJson,
               add: domain,
               port: res.data.data.port,
-              ps: `${country ? `${country}-` : ""}${originalVmessJson.ps}`,
+              ps: `${country ? `${country === "自定义" ? customCountry : country}-` : ""}${originalVmessJson.ps}`,
             };
             const newVmessStr = `vmess://${base64Encode(
               JSON.stringify(newVmessJson),
@@ -168,21 +178,31 @@ const NNRTransfer = () => {
       <section>
         <span className="flex">Country:</span>
         <Select
-          className="w-[250px]"
+          className="w-full"
           value={country}
           onChange={(value) => {
             setCountry(value);
           }}
           allowClear
-        >
-          <Select.Option value="美国">美国</Select.Option>
-          <Select.Option value="英国">英国</Select.Option>
-          <Select.Option value="泰国">泰国</Select.Option>
-          <Select.Option value="越南">越南</Select.Option>
-          <Select.Option value="新加坡">新加坡</Select.Option>
-          <Select.Option value="马来西亚">马来西亚</Select.Option>
-          <Select.Option value="菲律宾">菲律宾</Select.Option>
-        </Select>
+          options={[
+            { value: "美国", label: "美国" },
+            { value: "英国", label: "英国" },
+            { value: "泰国", label: "泰国" },
+            { value: "越南", label: "越南" },
+            { value: "新加坡", label: "新加坡" },
+            { value: "马来西亚", label: "马来西亚" },
+            { value: "菲律宾", label: "菲律宾" },
+            { value: "自定义", label: "自定义" },
+          ]}
+        />
+        {country === "自定义" && (
+          <Input 
+            value={customCountry}
+            onChange={(e) => {
+              setCustomCountry(e.target.value);
+            }}
+          />
+        )}
       </section>
 
       <section>
