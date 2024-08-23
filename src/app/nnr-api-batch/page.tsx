@@ -159,7 +159,7 @@ const NNRTransfer = () => {
               ...originalVmessJson,
               add: domain,
               port: res.port,
-              ps: `${country ? `${country === "自定义" ? customCountry : country}-` : ""}${originalVmessJson.ps}`,
+              ps: `${country ? `${country === "自定义" ? customCountry : country}-` : ""}${name === "" ? "" : `${name}-`}${originalVmessJson.ps}`,
             };
             const newVmessStr = `vmess://${base64Encode(
               JSON.stringify(newVmessJson),
