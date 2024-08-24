@@ -45,6 +45,7 @@ const NNRTransfer = () => {
     if (sid === "d7a4cec6-833f-4001-86d3-8b902415979e")
       return "ninestar.online";
     if (sid === "A001") return "starfly.online";
+    if (sid === "4ad19243-6f48-47a4-bd21-fa44919c026a") return "ninestar.site";
   }, [sid]);
 
   const {
@@ -159,7 +160,11 @@ const NNRTransfer = () => {
               ...originalVmessJson,
               add: domain,
               port: res.port,
-              ps: `${country ? `${country === "自定义" ? customCountry : country}-` : ""}${name === "" ? "" : `${name}-`}${originalVmessJson.ps}`,
+              ps: `${
+                country
+                  ? `${country === "自定义" ? customCountry : country}-`
+                  : ""
+              }${name === "" ? "" : `${name}-`}${originalVmessJson.ps}`,
             };
             const newVmessStr = `vmess://${base64Encode(
               JSON.stringify(newVmessJson),
