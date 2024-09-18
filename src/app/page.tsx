@@ -19,6 +19,12 @@ export default function Home() {
       >
         NNR API Batch
       </Link>
+      <Link
+        href="/qrcode-list"
+        className="cursor-pointer text-blue-500 underline"
+      >
+        Qrcode List
+      </Link>
     </main>
   );
   return (
