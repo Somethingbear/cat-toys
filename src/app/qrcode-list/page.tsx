@@ -16,7 +16,10 @@ const QrcodeList = () => {
       dataIndex: "origin",
       key: "origin",
       width: 200,
-      ellipsis: true,
+      // ellipsis: true,
+      render: (value, record, index) => {
+        return <div className="w-[200px] truncate">{value}</div>;
+      },
     },
     {
       title: "Host",
@@ -25,9 +28,7 @@ const QrcodeList = () => {
       width: 200,
       render: (value, record, index) => {
         if (value.startsWith("vmess://")) {
-          const vmessJson = JSON.parse(
-            base64Decode(originalStr.split("://")[1]),
-          );
+          const vmessJson = JSON.parse(base64Decode(value.split("://")[1]));
           return vmessJson?.add;
         } else if (value.startsWith("ss://")) {
           const regex = /@([^#]+)#/;
@@ -45,15 +46,27 @@ const QrcodeList = () => {
       width: 200,
       render: (value, record, index) => {
         if (value.startsWith("vmess://")) {
-          const vmessJson = JSON.parse(
-            base64Decode(originalStr.split("://")[1]),
-          );
+          const vmessJson = JSON.parse(base64Decode(value.split("://")[1]));
           return vmessJson?.port;
         } else if (value.startsWith("ss://")) {
           const regex = /@([^#]+)#/;
           const matches = value.match(regex);
           const hostPort = matches ? matches[1] : null;
           return hostPort ? hostPort.split(":")[1] : "";
+        }
+        return "--";
+      },
+    },
+    {
+      title: "Remark",
+      dataIndex: "origin",
+      key: "host",
+      width: 200,
+      render: (value, record, index) => {
+        if (value.startsWith("vmess://")) {
+          const vmessJson = JSON.parse(base64Decode(value.split("://")[1]));
+          return vmessJson?.ps;
+        } else if (value.startsWith("ss://")) {
         }
         return "--";
       },
@@ -70,7 +83,7 @@ const QrcodeList = () => {
   ];
 
   return (
-    <main className="flex max-w-[900px] flex-col gap-4 p-6">
+    <main className="flex max-w-[1300px] flex-col gap-4 p-6">
       <h2 className="print:hidden">Qrocde Transfer</h2>
 
       <section className="print:hidden">
