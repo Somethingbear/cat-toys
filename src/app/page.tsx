@@ -25,6 +25,12 @@ export default function Home() {
       >
         Qrcode List
       </Link>
+      <Link
+        href="/comma-tool"
+        className="cursor-pointer text-blue-500 underline"
+      >
+        Comma Tool
+      </Link>
     </main>
   );
   return (

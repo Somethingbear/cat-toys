@@ -264,6 +264,20 @@ const NNRTransfer = () => {
         />
       </section>
       <section>{newVmessStr && <QRCode value={newVmessStr} />}</section>
+
+      {/* <button onClick={async () => {
+        const res = await axios.post<{ data: IServerItem[] }>(
+          `${baseUrl}/api/rules/`,
+          {},
+          {
+            headers: {
+              "Content-Type": "application/json",
+              token: "ebfee4d8-dd4a-4739-8459-f888f8fdbed1",
+            },
+          },
+        );
+        console.log(res);
+      }}>test</button> */}
     </main>
   );
 };

@@ -4,3 +4,7 @@ Deployed at [Cat Toys](https://cat-toys.vercel.app/)
 
 #### [NNR Transfer](https://cat-toys.vercel.app/nnr-transfer)
 For user from [NNR](https://nnr.moe/?aff=8613) to transfer vmess link
+
+
+ninestar.site 常州
+ninebolo.info 广州
