@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="flex flex-col gap-2 p-6">
-      <Link
+      {/* <Link
         href="/nnr-transfer"
         className="cursor-pointer text-blue-500 underline"
       >
@@ -18,7 +18,7 @@ export default function Home() {
         className="cursor-pointer text-blue-500 underline"
       >
         NNR API Batch
-      </Link>
+      </Link> */}
       <Link
         href="/qrcode-list"
         className="cursor-pointer text-blue-500 underline"
@@ -30,6 +30,12 @@ export default function Home() {
         className="cursor-pointer text-blue-500 underline"
       >
         Comma Tool
+      </Link>
+      <Link
+        href="/vmess-convert"
+        className="cursor-pointer text-blue-500 underline"
+      >
+        Vmess Convert
       </Link>
     </main>
   );
