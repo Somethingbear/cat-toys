@@ -11,9 +11,13 @@ const CommaTool = () => {
   const transferStr = useMemo(() => {
     const strArr = originalStr.split("\n").filter(Boolean);
     const convertStrArr = strArr.map((value) => {
-      const vmessJson = JSON.parse(base64Decode(value.split("://")[1]));
-      const { ps, add, port, id, aid, scy } = vmessJson;
-      return `${ps}\n${add}|${port}|${id}|${aid}|${scy}`;
+      try {
+        const vmessJson = JSON.parse(base64Decode(value.split("://")[1]));
+        const { ps, add, port, id, aid, scy } = vmessJson;
+        return `${ps}\n${add}|${port}|${id}|${aid}|${scy}`;
+      } catch (error) {
+        return "";
+      }
     });
     return convertStrArr.join("\n");
   }, [originalStr]);
